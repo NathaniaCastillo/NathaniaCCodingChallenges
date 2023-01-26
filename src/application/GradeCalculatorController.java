@@ -25,6 +25,9 @@ public class GradeCalculatorController {
     private Label courseGradeLabel;
 
     @FXML
+    Label projectErrorLabel;
+
+    @FXML
     void calculateGrade(ActionEvent event) {
     	double courseGrade = 0.0;
     	//assuming the project is worth 50% of course
