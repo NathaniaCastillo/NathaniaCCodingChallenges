@@ -32,13 +32,13 @@ public class GradeCalculatorController {
     	double courseGrade = 0.0;
     	//assuming the project is worth 50% of course
     	String projectGrade =  projectGradeTextfield.getText();
-    	courseGrade = courseGrade + Double.parseDouble(projectGrade)* 50/100;
+    	courseGrade = courseGrade + Double.parseDouble(projectGrade)* 40/100;
     	System.out.println("Project grad entered: " +projectGrade +
     			" Course grade so far: " + courseGrade);
     	//assuming the quizzes are worth 30% towards course grade
     	//assuming that quizzes are marked out of 10****
     	double quizGrade = averageQuizGradeSlider.getValue();
-    	courseGrade += quizGrade * (100/10) * .25;
+    	courseGrade += quizGrade * (100/10) * .3;
     	System.out.println("Quiz grade entered: " + quizGrade 
     			+ " Course grade so far: " + courseGrade);
     	//assuming that coding challenges are worth 20% towards course grade**has to be changed i believe 
