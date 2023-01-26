@@ -29,7 +29,13 @@
             <Label text="\%">
                <HBox.margin>
                   <Insets top="15.0" />
-               </HBox.margin></Label>
+               </HBox.margin>
+               </Label>
+               <Label fx:id= "projectErrorLabel" text="Error message goes here" textFill="RED">
+               	<HBox.margin>
+               		<Insets bottom= "10.0" text= "Error message goes here" textFill= "RED"/>
+               	</HBox.margin>
+               </Label>
          </children>
          <VBox.margin>
             <Insets />
