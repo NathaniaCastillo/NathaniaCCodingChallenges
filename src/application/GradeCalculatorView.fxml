@@ -29,7 +29,9 @@
             <Label text="\%">
                <HBox.margin>
                   <Insets top="15.0" />
-               </HBox.margin></Label>
+               </HBox.margin>
+               </Label>
+               <Label text="This should cause a merge conflict"/>
          </children>
          <VBox.margin>
             <Insets />
