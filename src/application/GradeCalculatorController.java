@@ -17,7 +17,7 @@ public class GradeCalculatorController {
     private ChoiceBox<Integer> codingChallengesChoiceBox;
 
     @FXML
-    private Slider averageQuizGradeSlider;
+    private ChoiceBox<Integer> quizzesChoiceBox;
 
     @FXML
     private TextField projectGradeTextfield;
@@ -107,7 +107,7 @@ public class GradeCalculatorController {
     	
     	//assuming the quizzes are worth 30% towards course grade
     	//assuming that quizzes are marked out of 10****
-    	double quizGrade = averageQuizGradeSlider.getValue();
+    	double quizGrade = quizzesChoiceBox.getValue();
     	courseGrade += quizGrade * (100/10) * .25;
     	System.out.println("Quiz grade entered: " + quizGrade 
     			+ " Course grade so far: " + courseGrade);
