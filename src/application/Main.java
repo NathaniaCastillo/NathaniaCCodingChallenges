@@ -1,5 +1,6 @@
-//Nathania Castillo
-//UCID 30152619
+/*Nathania Castillo
+*UCID 30152619
+*/
 package application;
 	
 import java.io.FileInputStream;
@@ -13,12 +14,15 @@ import javafx.scene.layout.VBox;
 
 public class Main extends Application {
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) {//argument
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			VBox root = loader.load(new FileInputStream("src/application/GradeCalculatorView.fxml"));
+			GradeCalculatorController controller =(GradeCalculatorController)loader.getController();
+			controller.applicationStage = primaryStage;
+			controller.OptApplicationStage = primaryStage;
 			Scene scene = new Scene(root,700,220);
-			primaryStage.setScene(scene);
+			primaryStage.setScene(scene);//my window
 			primaryStage.setTitle("Nathania's Grade Calculator");
 			primaryStage.show();
 		} catch(Exception e) {
