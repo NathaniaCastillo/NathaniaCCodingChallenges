@@ -1,6 +1,8 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 /*Nathania Castillo
  * UCID 30152619
@@ -118,23 +120,22 @@ public class GradeCalculatorController {
     	for(TextField textfield: quizGradeTextfield) {//for each textfield in quiz textfield
     		averageQuizGrade += Double.parseDouble(textfield.getText()); 
     	}
-    	averageQuizGrade = averageQuizGrade /quizGradeTextfield.size();
-    	requiredQuizAverage.setText("" + averageQuizGrade);//new line added
+    	averageQuizGrade = averageQuizGrade /15;//testing for it to be the same as dropbox
+    	requiredQuizAverage.setText(""+ String.format("%.2f", averageQuizGrade) + "/10.0");//added string format from java2blog
     	
     	applicationStage.setScene(mainScene);
     }
 //required quiz
     @FXML
     void getQuizGrades(ActionEvent enterQuizGradeEvent) {
-    	System.out.println("hello");
     	Scene mainScene = applicationStage.getScene();
     	numberOfQuizzes = quizzesChoiceBox.getValue();
-    	System.out.println(numberOfQuizzes);
     	int rowCounter = 0;
-    	
+    	Label title = new Label("Required quiz grades");
     	VBox allRows = new VBox();
-    	ArrayList <TextField> quizTextFields = new ArrayList<TextField>();
+    	allRows.getChildren().add(title);
     	
+    	ArrayList <TextField> quizTextFields = new ArrayList<TextField>();
     	while(rowCounter < numberOfQuizzes) {
     		rowCounter++;
         	HBox quizRow = new HBox();
@@ -156,30 +157,55 @@ public class GradeCalculatorController {
 //optional quizzes 
     void calculateOptQuizGrade(Scene optMainScene, ArrayList<TextField> optQuizGradeTextfield){
     	optAverageQuizGrade = 0.0;
+    	double totalNumOptQuizzes = 0.0;
+ 
+    	
+    	ArrayList<Double> highestFiveQuizGrades = new ArrayList<Double>();
     	
     	for(TextField textfield: optQuizGradeTextfield) {
-    		optAverageQuizGrade += Double.parseDouble(textfield.getText()); 
+    		optAverageQuizGrade += Double.parseDouble(textfield.getText()); //in this line it is adding all the numbers
+    		highestFiveQuizGrades.add(Double.parseDouble(textfield.getText()));// in this line it is putting all the numbers in an array individually
     	}
-    	optAverageQuizGrade = optAverageQuizGrade /optQuizGradeTextfield.size();
-    	optionalQuizAverage.setText("" + optAverageQuizGrade);//new line added
+    	Collections.sort(highestFiveQuizGrades);//this sorts from lowest to highest number
+    	int numOfQuizzesComplete = highestFiveQuizGrades.size();
     	
+    	if (numOfQuizzesComplete <= 5) {
+    		for (double optQuizGrade : highestFiveQuizGrades) {
+    			totalNumOptQuizzes += optQuizGrade;   			
+    		}
+    		optAverageQuizGrade = totalNumOptQuizzes/5;//optQuizGradeTextfield.size()
+    	}
+    	if(numOfQuizzesComplete == 6) {
+    		highestFiveQuizGrades.remove(0);//this removes first number which is now the lowest number thanks to the sort function
+    		for(double optQuizGrade : highestFiveQuizGrades) {
+    			totalNumOptQuizzes += optQuizGrade;
+    		}
+    		optAverageQuizGrade = totalNumOptQuizzes/5;
+    	}
+    	if(numOfQuizzesComplete == 7){
+    		highestFiveQuizGrades.remove(0);
+    		highestFiveQuizGrades.remove(0);
+    		for(double optQuizGrade : highestFiveQuizGrades) {
+    			totalNumOptQuizzes += optQuizGrade;
+    		}
+    		optAverageQuizGrade = totalNumOptQuizzes/5;
+    	}
+    	
+    	optionalQuizAverage.setText("" + String.format("%.2f",optAverageQuizGrade) + "/10.0");
     	OptApplicationStage.setScene(optMainScene);
     }
 //optional quizzes
     @FXML
     void getOptQuizGrades(ActionEvent enterOptQuizGradeEvent) {
-    	System.out.println("hi");
+    
     	Scene optMainScene = OptApplicationStage.getScene();
-    	
     	optNumberOfQuizzes = optionalQuizChoiceBox.getValue();
-    	System.out.println(optNumberOfQuizzes);
-    	
     	int optRowCounter = 0;
-    	
+    	Label optTitle = new Label("Optional quiz grades");
     	VBox optAllRows = new VBox();
+    	optAllRows.getChildren().add(optTitle);
+    	
     	ArrayList <TextField> optQuizTextFields = new ArrayList<TextField>();
-    	
-    	
     	while(optRowCounter < optNumberOfQuizzes) {
     		optRowCounter++;
         	HBox optQuizRow = new HBox();
@@ -227,13 +253,13 @@ public class GradeCalculatorController {
     	
     	//assuming the quizzes are worth 30% towards course grade
     	//assuming that quizzes are marked out of 10****
-    	double requiredQuizGrade = averageQuizGrade;//have to divide this into required and optional
-    	courseGrade += requiredQuizGrade * 1.25;
+    	double requiredQuizGrade = averageQuizGrade * 10;//have to divide this into required and optional
+    	courseGrade += requiredQuizGrade* 0.1875;
     	System.out.println("Quiz grade entered: " + requiredQuizGrade 
     			+ " Course grade so far: " + courseGrade);
     	//the optional ones
-    	double optQuizGrade = optAverageQuizGrade;
-    	courseGrade += optQuizGrade * 1.25;//not right numbers rn
+    	double optQuizGrade = optAverageQuizGrade * 10;
+    	courseGrade += optQuizGrade * 0.0625;//not right numbers rn
     	System.out.println("Optional quiz grade entered: " + optQuizGrade
     			+ "Course grade so far");
     	

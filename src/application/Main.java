@@ -21,7 +21,7 @@ public class Main extends Application {
 			GradeCalculatorController controller =(GradeCalculatorController)loader.getController();
 			controller.applicationStage = primaryStage;
 			controller.OptApplicationStage = primaryStage;
-			Scene scene = new Scene(root,700,220);
+			Scene scene = new Scene(root,700,250);
 			primaryStage.setScene(scene);//my window
 			primaryStage.setTitle("Nathania's Grade Calculator");
 			primaryStage.show();
