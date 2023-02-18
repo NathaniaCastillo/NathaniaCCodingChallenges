@@ -224,10 +224,10 @@ public class GradeCalculatorController {
     
     	
     	//require and optional quizzes//have to fix this part i think I do not kno what tho
-    	System.out.println("5." +reAverageQuizGrade);
+    	
     	Grade reQuizGrade = new Grade(reAverageQuizGrade,10, 0.1875);//changed to 100
     	
-    	System.out.println("5." +optAverageQuizGrade);
+    	
     	Grade optQuizGrade = new Grade(optAverageQuizGrade,10, 0.0625);//changed
 
     	
