@@ -1,5 +1,7 @@
 package application;
-
+/*Nathania Castillo
+ * UCID 30152619
+ */
 public class Grade {
 	//attributes/data
 	double value;
