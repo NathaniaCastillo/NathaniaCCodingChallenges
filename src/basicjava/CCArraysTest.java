@@ -53,6 +53,7 @@ public class CCArraysTest {
 		char[] chars = str.toCharArray();
 		CCArrays.replace(chars, 'a', 'b');
 		assertEquals("Length array ['a','a','a','a','a','a','a'] should be unchanged.", 7, chars.length);
+		//System.out.println("chars length"+ chars.length);
 		assertEquals("Array ['a','a','a','a','a','a','a'] should have first element changed to 'b'.", 'b', chars[0]);
 		assertEquals("Array ['a','a','a','a','a','a','a'] should have second element changed to 'b'.", 'b', chars[1]);
 		assertEquals("Array ['a','a','a','a','a','a','a'] should have third element changed to 'b'.", 'b', chars[2]);
