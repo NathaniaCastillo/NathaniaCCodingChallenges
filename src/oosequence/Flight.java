@@ -24,7 +24,9 @@ public class Flight {
 		
 	}
 	
-	public Flight(Flight flightToCopy) {
+	public Flight(Flight toCopy) {
+		departure = toCopy.departure;
+		arrival = toCopy.arrival;
 		
 	}
 
