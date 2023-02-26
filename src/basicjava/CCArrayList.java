@@ -1,7 +1,8 @@
 package basicjava;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+
+
 
 public class CCArrayList {
 	
@@ -22,7 +23,11 @@ public class CCArrayList {
 
 //used wrapper class Double for ArrayList since a Double cannot be used as a type of argument for generics
 	public static void insert(ArrayList<Double>nums,double numToInsert, int insertAtIndex) {
+		if(nums.size() > 0) {
+			nums.add(insertAtIndex,numToInsert);//adding the place where it wants to be added
+			System.out.println(nums);
+		}
+	}}
 		
-	}
-	}
+
 
