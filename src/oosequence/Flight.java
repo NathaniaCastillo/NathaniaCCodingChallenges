@@ -1,3 +1,6 @@
+/* Nathania castillo
+ * UCID:30152619
+ */
 package oosequence;
 
 import java.util.Date;
@@ -32,8 +35,16 @@ public class Flight {
 
 	
 	public long length() {
-		return 0;
-		
+		long realLength = 0;
+		if (departure != (null)&& arrival != (null)) {
+			long minutesDeparture = departure.getTime();//used get time to switch from date to long found byusing chat gpt.
+			long minutesArrival = arrival.getTime();
+
+			realLength = (minutesArrival - minutesDeparture)/60000;
+			
+		}
+
+		return realLength;
 		
 	}
 
