@@ -13,7 +13,7 @@ public class CCArrayList {
 			if(str.equalsIgnoreCase(toFind)){//new method here ignore if it is upper case or lower case for string, learnt in chat gpt
 				return num;
 			}
-				
+			
 			
 		}
 		
