@@ -48,4 +48,24 @@ public class Flight {
 		
 	}
 
+	public Object getDeparture() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object getArrival() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setArrival(Date date) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setDeparture(Date date) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
