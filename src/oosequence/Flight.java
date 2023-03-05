@@ -10,11 +10,12 @@ public class Flight {
 	private Date departure;
 	private Date arrival;
 	
-	public Object getDeparture() {
+	public Date getDeparture() {
 		return departure;
+		
 	}
 
-	public Object getArrival() {
+	public Date getArrival() {
 		return arrival;
 	}
 

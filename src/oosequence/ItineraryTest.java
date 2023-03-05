@@ -70,6 +70,7 @@ public class ItineraryTest {
 
 		@Test
 		public void test_addflight_addingOverlappingFlight() {
+
 			Itinerary c = new Itinerary("Test");
 			Flight m1 = new Flight(getDate(2019,1,1,10,0),getDate(2019,1,1,11,0));
 			Flight m2 = new Flight(getDate(2019,1,1,11,30),getDate(2019,1,1,12,45));
