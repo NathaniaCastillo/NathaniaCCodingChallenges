@@ -2,7 +2,7 @@ package oosequence;
 
 import java.util.Date;
 
-public class Flight {
+public class Flight extends TripComponent{
 	private String departureAirport;
 	private String arrivalAirport;
 	
@@ -10,8 +10,17 @@ public class Flight {
 	
 	
 	
-	public void setArrivalAirport(String string) {
-		// TODO Auto-generated method stub
+	public void setArrivalAirport(String arrivalAirport1) {
+		
+		if (arrivalAirport1 == null) {
+			arrivalAirport = "";
+		}
+	    else if (arrivalAirport1.length() < 3 || arrivalAirport1.length() > 3) {
+			arrivalAirport = "";
+			
+		}else {
+			arrivalAirport = arrivalAirport1;
+		}
 		
 	}
 
@@ -19,54 +28,43 @@ public class Flight {
 
 
 
-	public Object getArrivalAirport() {
+	public String getArrivalAirport() {
 		// TODO Auto-generated method stub
-		return null;
+		return arrivalAirport;
 	}
 
 
 
 
 
-	public Object getDepartureAirport() {
+	public String getDepartureAirport() {
 		// TODO Auto-generated method stub
-		return null;
+		return departureAirport;
 	}
 
 
 
 
 
-	public void setDepartureAirport(String string) {
-		// TODO Auto-generated method stub
+	public void setDepartureAirport(String departureAirport1) {
+		if (departureAirport1 == null) {
+			departureAirport = "";
+		}
+	    else if (departureAirport1.length() < 3 || departureAirport1.length() > 3) {
+			departureAirport = "";
+			
+		}else {
+			departureAirport = departureAirport1;
+		}
 		
 	}
 
 
-
-
-//maybe do inheritance here or something??
-	public void setStart(Date date) {
-		// TODO Auto-generated method stub
+	public String getDuration() {
+		long longSecs= lengthInSeconds();
+		long longMinutes = longSecs/60;
 		
-	}
-
-
-
-
-
-	public void setEnd(Date date) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-
-
-	public Object getDuration() {
-		// TODO Auto-generated method stub
-		return null;
+		return String.valueOf(longMinutes) + " minutes";
 	}
 
 

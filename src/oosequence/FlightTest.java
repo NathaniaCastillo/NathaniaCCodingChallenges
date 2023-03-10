@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.Calendar;
 import java.util.Date;
 
-public class FlightTest {
+public class FlightTest{
 	
 	private Date getDate(int year, int month, int day, int hour, int minute) {
 		Calendar cal = Calendar.getInstance();
