@@ -10,6 +10,22 @@ public class Flight extends TripComponent{
 	
 	
 	
+	public Flight(Date departureTime, Date arrivalTime, String departureAirport, String arrivalAirport) {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+
+	public Flight(Flight toCopy) {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+
 	public void setArrivalAirport(String arrivalAirport1) {
 		
 		if (arrivalAirport1 == null) {
@@ -67,7 +83,13 @@ public class Flight extends TripComponent{
 		return String.valueOf(longMinutes) + " minutes";
 	}
 
-
+	public String getEnd() {
+		return null;
+		
+	}
+	public String getStart() {
+		return null;
+	}
 	
 	
 
