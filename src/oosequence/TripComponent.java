@@ -13,9 +13,9 @@ public class TripComponent{
 	
 //changed get start method to a string
 	public String getStart() {
-		if (start == null) {			
+		{if (start == null) {			
 			return "";
-		}else {
+		}else 
 			
 		return String.valueOf(start);
 		
@@ -146,14 +146,7 @@ public class TripComponent{
 	
 	//ADDED TWO METHODS
 	public boolean isBefore(TripComponent otherComponent) {
-		/*boolean before = false;
-		System.out.println(before);
-		if(otherComponent.end != null && end != null){
-			if(otherComponent.end.before(end)|| otherComponent.start.before(start)){//this has to be fixed
-				before = true;
-			}
-			System.out.println(before);
-		}*/
+
 		return false;
 	}
 	public boolean overlapsWith(TripComponent otherComponent) {

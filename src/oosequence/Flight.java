@@ -11,7 +11,9 @@ public class Flight extends TripComponent{
 	
 	
 	public Flight(Date departureTime, Date arrivalTime, String departureAirport, String arrivalAirport) {
-		// TODO Auto-generated constructor stub
+		super(departureTime,arrivalTime);
+		this.departureAirport = departureAirport;
+		this.arrivalAirport = arrivalAirport;
 	}
 
 
@@ -19,7 +21,10 @@ public class Flight extends TripComponent{
 
 
 	public Flight(Flight toCopy) {
-		// TODO Auto-generated constructor stub
+		super(toCopy);
+		this.arrivalAirport = toCopy.arrivalAirport;
+		this.departureAirport = toCopy.departureAirport;
+		
 	}
 
 
@@ -45,8 +50,23 @@ public class Flight extends TripComponent{
 
 
 	public String getArrivalAirport() {
-		// TODO Auto-generated method stub
-		return arrivalAirport;
+		/*if(arrivalAirport != null ) { //&& arrivalAirport.length() != 3
+			return departureAirport;
+		}
+		else {
+			return "";
+		}}
+*/
+		if (arrivalAirport == null) {
+			return "";
+		}
+	    else if (arrivalAirport.length() < 3 || arrivalAirport.length() > 3) {
+			return "";
+			
+		}else {
+			return arrivalAirport;
+		}
+		
 	}
 
 
@@ -54,11 +74,18 @@ public class Flight extends TripComponent{
 
 
 	public String getDepartureAirport() {
-		// TODO Auto-generated method stub
-		return departureAirport;
+		if (departureAirport == null) {
+			return "";
+		}
+	    else if (departureAirport.length() < 3 || departureAirport.length() > 3) {
+			return "";
+			
+		}else {
+			return departureAirport;
+		}
+		
 	}
-
-
+		
 
 
 
@@ -84,11 +111,20 @@ public class Flight extends TripComponent{
 	}
 
 	public String getEnd() {
-		return null;
-		
-	}
+		if(arrivalAirport != null) {
+			return arrivalAirport + " " + super.getEnd();
+		}
+		else {
+			return "";
+		}}
 	public String getStart() {
-		return null;
+		System.out.println(super.getStart());
+		if (departureAirport != null) {
+			return departureAirport + " " + super.getStart();
+		}
+		else {
+			return "";
+		}
 	}
 	
 	
