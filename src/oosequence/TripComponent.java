@@ -147,16 +147,18 @@ public class TripComponent{
 		return false;
 	}
 
-/*
-	public boolean overlapsWith(TripComponent otherC) {
 
+	public boolean overlapsWith(TripComponent otherC) {
+		if( !(start==null) && !(end==null) && !(otherC.start==null) && !(otherC.end==null)) {
 
 		return !(this.isBefore(otherC) || otherC.isBefore(this));
 
 
 
 		}
-*/
+		return false;
+	}
+/*
 	public boolean overlapsWith(TripComponent otherC) {
 
 		if( !(start==null) && !(end==null) && !(otherC.start==null) && !(otherC.end==null)) {
@@ -171,6 +173,6 @@ public class TripComponent{
 
 	}
 
-
+*/
 
 }
