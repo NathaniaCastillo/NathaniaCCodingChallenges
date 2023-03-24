@@ -21,24 +21,19 @@ public class TripComponent{
 		
 	}
 	}
-//changed to string aswell
+//changed to string as well
 	public String getEnd(){
 		if (end == null) {
 			return "";
 		}else {
-		//asserts that the new end date is correctly set by calling this function
-		//System.out.println(" this is the end time: "+end);
+
 		return String.valueOf(end);
 	}}
 	
 	
 	public void setStart(Date currentTime) {
 		
-		/*System.out.println("start " + start);
-		System.out.println("currentTime " +currentTime);
-		System.out.println("end " +end);
-		System.out.println("_______________________________________________________________");
-*/
+
 		if (currentTime == null ||end == null) {//if current time is null or end is null ; start is current Time
 			start = currentTime;
 		
@@ -51,7 +46,7 @@ public class TripComponent{
 	}
 
 	public void setEnd(Date oneHourLaterTime) {
-		//System.out.println("hello end" +end);
+		
 		if (oneHourLaterTime == null || start == null){
 			end = oneHourLaterTime;
 
@@ -62,7 +57,7 @@ public class TripComponent{
 	}
 
 	public void setArrival(Date realArrival) {//setting only arrival date
-		//System.out.println("real arrival: " + realArrival);
+		
 		if (start == (null) || realArrival == (null)) {
 			end = realArrival;//no more tests at this point
 		}
@@ -77,9 +72,9 @@ public class TripComponent{
 
 	public void setDeparture(Date realDeparture){//is this the one for when a departure changes? {//setting departure computer
 		if(end == (null)|| realDeparture == (null)) {
-			start = realDeparture;;//idk
+			start = realDeparture;;//
 		}
-		else if(realDeparture.before(end)) {//idkkkkk
+		else if(realDeparture.before(end)) {
 			start = realDeparture;
 	}
 	
@@ -145,28 +140,36 @@ public class TripComponent{
 	}
 	
 	//ADDED TWO METHODS
-	public boolean isBefore(TripComponent otherComponent) {
+	public boolean isBefore(TripComponent otherC) {
+
+		if(this.end.getTime() < otherC.start.getTime()) {return true;}
 
 		return false;
 	}
-	public boolean overlapsWith(TripComponent otherComponent) {
-		boolean overlapping = false; 
-		System.out.println(start);
-		
-		if(otherComponent.start != null && end != null && otherComponent.end != null && start != null) {
-			if (otherComponent.end.before(end)|| otherComponent.start.before(start))  {
-				overlapping = true;
-			}
-			if(otherComponent.start.before(end)) {
-				overlapping = true;
-			}
-		
-			System.out.println(overlapping);
-		}
-		
-		return overlapping;
-	}
 
+/*
+	public boolean overlapsWith(TripComponent otherC) {
+
+
+		return !(this.isBefore(otherC) || otherC.isBefore(this));
+
+
+
+		}
+*/
+	public boolean overlapsWith(TripComponent otherC) {
+
+		if( !(start==null) && !(end==null) && !(otherC.start==null) && !(otherC.end==null)) {
+
+			return !(this.isBefore(otherC));
+
+		}
+
+		return false;
+
+
+
+	}
 
 
 

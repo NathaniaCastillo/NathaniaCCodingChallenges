@@ -50,13 +50,7 @@ public class Flight extends TripComponent{
 
 
 	public String getArrivalAirport() {
-		/*if(arrivalAirport != null ) { //&& arrivalAirport.length() != 3
-			return departureAirport;
-		}
-		else {
-			return "";
-		}}
-*/
+
 		if (arrivalAirport == null) {
 			return "";
 		}
@@ -118,7 +112,7 @@ public class Flight extends TripComponent{
 			return "";
 		}}
 	public String getStart() {
-		System.out.println(super.getStart());
+
 		if (departureAirport != null) {
 			return departureAirport + " " + super.getStart();
 		}
