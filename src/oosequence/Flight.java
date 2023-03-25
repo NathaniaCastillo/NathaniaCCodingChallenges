@@ -11,12 +11,24 @@ public class Flight {
 	private Date arrival;
 	
 	public Date getDeparture() {
-		return departure;
+		System.out.println(departure);
+		//sharing a reference to departure data with who ever called this methos
+		//prevention is to make a copy
+		if (departure == null) {
+			return null;
+		}
+		
+		
+		return new Date(departure.getTime());//how to change from date to flight
 		
 	}
 
 	public Date getArrival() {
-		return arrival;
+		if(arrival == null) {
+			return null;
+		}
+		
+		return new Date(arrival.getTime());
 	}
 
 	public void setArrival(Date realArrival) {//setting only arrival date
@@ -26,7 +38,7 @@ public class Flight {
 		else if (departure.before(realArrival)){
 			arrival = realArrival;//this refers to instance and second is the local variable?
 			
-			// --> then departure date 
+			
 		}
 			
 	}
@@ -45,25 +57,29 @@ public class Flight {
 
 	
 	public Flight (Date time1, Date time2) {//this naming either
-		if (time1 == (null)|| time2 == (null)) {
-			departure = time1;
-			arrival = time2;
+		if (time1 == (null)&& time2 != null) {
+			//don't use reference directly if i do not want to share my own
+			this.departure = time1;
+			this.arrival = new Date(time2.getTime());
+		}
+		else if (time2 == (null) && time1 != null) {
+			this.departure =  new Date(time1.getTime());
+			this.arrival = time2;
 		}
 		else if (time1 != (null) && time2 != (null)) {
 			if (time1.before(time2)){
-				departure = time1;
-				arrival = time2;
-			}
-			else {
-				departure = (null);
-				arrival = (null);
+				this.departure =  new Date(time1.getTime());
+				this.arrival = new Date(time2.getTime());
+		}else {
+				this.departure = (null);
+				this.arrival = (null);
 			}
 		}
 		
 	}
 	
 	public Flight(Flight toCopy) {
-		departure = toCopy.departure;
+		departure = toCopy.departure;//which type of variable to use??
 		arrival = toCopy.arrival;
 		
 	}
