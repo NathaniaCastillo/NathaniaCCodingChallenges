@@ -5,13 +5,12 @@ package oosequence;
 
 import java.util.Date;
 
-public class Flight {
+public class Flight{
 	
 	private Date departure;
 	private Date arrival;
 	
 	public Date getDeparture() {
-		System.out.println(departure);
 		//sharing a reference to departure data with who ever called this methos
 		//prevention is to make a copy
 		if (departure == null) {
