@@ -18,30 +18,26 @@ public class Itinerary{
 		//System.out.println("size$$$$ " + flights.size());
 		if (flights.size() == 0){
 			//System.out.println("hello");
-			flights.add(newFlight);
+			flights.add(new Flight (newFlight));
 			//System.out.println("size#### " + flights.size());
 			return;
 		}//not here where deep copy needs to be added
 
 		if(newFlight.getArrival().before(flights.get(0).getDeparture())) {
-			flights = new ArrayList<Flight>();
-			flights.add(0,newFlight);
+			flights.add(0,new Flight (newFlight));
 			return;
 		}		
 		for (int i = 0; i <= flights.size()-1;i++ ){
 			if (newFlight.getDeparture().after(flights.get(i).getArrival()) &&
 					i == flights.size()-1|| newFlight.getArrival().before(flights.get(i+1).
 							getDeparture())){
-				flights.add(i+1,newFlight);
+				flights.add(i+1,new Flight (newFlight));
 				return;
 				
 				}
-				
-			
-				
 			
 		}
-			
+		flights.add(new Flight(newFlight.getDeparture(), newFlight.getArrival()));
 }
 
 
