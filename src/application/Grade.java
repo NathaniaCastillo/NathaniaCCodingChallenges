@@ -8,20 +8,37 @@ public class Grade {
 	double weight;
 	int maxValue = 100;
 	
+	public Grade (String value1, Integer maxValue1, Double weight1) throws InvalidGradeException{
+		try {
+		double valueOne = Double.parseDouble(value1);
+		value = valueOne;
+		
+		if(value > maxValue1) {
+			throw new InvalidGradeException("Grade is too large. Grid is invalid" + maxValue1);
+		}
+
+		
+		}catch (NumberFormatException nfe) {//using number format exception from Chat gpt that will be thrown from the change od string to double
+			throw new InvalidGradeException("Can't change to a string to double",nfe);
+		}
+		maxValue = maxValue1;
+		weight = weight1;
+	}
+		
 	Grade(double gradeValue, int maxGradeValue, double weightTowardsCourseGrade){
 		value = gradeValue;
 		maxValue = maxGradeValue;
 		weight = weightTowardsCourseGrade;
 	}
 	
-	double getWeightedPercentageValue(){
-		
-		
+
+	public double getWeightedPercentageGrade() {
 		return value * 100 * (weight / maxValue);
 	}
+
 	
 	//actions
-	String setValue(String valueAsString) {
+	/*String setValue(String valueAsString) {
 		String errorMessage = "";//assuming there is no error
     	//check that the user entered a numeric value
     	boolean validGrade = true;
@@ -37,7 +54,7 @@ public class Grade {
     			/*if character is a decimal point change to true and add no text also counting how many
     			 * decimal points there are.
     			 */
-    			
+    			/*
     			if (c == '.') {
     				validGrade = true;
     				errorMessage = ("");//projectGradeErrorLabel.setText("")
@@ -46,6 +63,7 @@ public class Grade {
     			/* when decimal point is more than one will change boolean to false and 
     			 * give an appropriate error message
     			 */
+	/*
     			if (count > 1){
     				validGrade = false;
     				errorMessage = (" Don't include more than one decimal point. Invalid value: " + value);
@@ -54,11 +72,11 @@ public class Grade {
     			}
     		}
     		
-    	}
+    	}*/
     	/*Default project grade to 0. If valid number entered, convert user input to
     	*floating number
     	*/
-    	
+    	/*
     	if(validGrade) {
     		value =  Double.parseDouble (valueAsString);
     	}
@@ -71,7 +89,7 @@ public class Grade {
     
     	
     	return errorMessage;
-    }
+    }*/
 	}
 
 

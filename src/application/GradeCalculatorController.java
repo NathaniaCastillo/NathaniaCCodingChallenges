@@ -63,7 +63,7 @@ public class GradeCalculatorController {
  
 //all for required quiz
     //notes: for the red text it has to be in the fxml file and it has the right values but is showing the wrong one in the scene.
-    void calculateQuizGrade(Scene mainScene, ArrayList<TextField> quizGradeTextfields){
+    void calculateQuizGrade(Scene mainScene, ArrayList<TextField> quizGradeTextfields) throws InvalidGradeException{
     	reQuizGradeErrorLabel.setText("");
     	reAverageQuizGrade = 0.0;
     	boolean noErrors = true;
@@ -71,21 +71,18 @@ public class GradeCalculatorController {
     	
     	
     	for(TextField textfield: quizGradeTextfields) {//for each textfield in quiz textfield
-    		Grade reQuizGrade = new Grade(0,10,weightOfEachQuiz);//double check the out of 10 hhere
-    		String errorMessage = reQuizGrade.setValue(textfield.getText());
-    		if (!errorMessage.equals("")) {
-    			noErrors = false;
-    			reQuizGradeErrorLabel.setText(errorMessage);
-    		}
-    		reAverageQuizGrade += ((reQuizGrade.getWeightedPercentageValue())/10); 
     		
-    	}
-    	if (noErrors) {
-    		requiredQuizAverage.setText(""+ String.format("%.2f", reAverageQuizGrade,100) + "/10.0");//added string format from java2blog
-    		applicationStage.setScene(mainScene);
-    	}
-
-    }
+    		try{Grade reQuizGrade = new Grade(textfield.getText(),10,weightOfEachQuiz);
+    		reAverageQuizGrade += reQuizGrade.getWeightedPercentageGrade();
+    		
+    		}
+    		catch(InvalidGradeException ige) {
+    			noErrors = false;
+    			Grade reQuizGrade = new Grade(0,10,weightOfEachQuiz);
+    			reQuizGradeErrorLabel.setText(ige.toString().replace("application.InvalidGradeException: " ,""));
+    			
+    		}
+    	}}
 //required quiz
     @FXML
     void getQuizGrades(ActionEvent enterQuizGradeEvent) {
@@ -108,7 +105,14 @@ public class GradeCalculatorController {
         	allRows.getChildren().add(quizRow);
     	}
     	Button doneButton = new Button("Done");
-    	doneButton.setOnAction(doneEvent -> calculateQuizGrade(mainScene,quizTextFields));
+    	doneButton.setOnAction(doneEvent -> {
+			try {
+				calculateQuizGrade(mainScene,quizTextFields);//work here*******************
+			} catch (InvalidGradeException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
     	allRows.getChildren().add(doneButton);
     	
     	reQuizGradeErrorLabel = new Label();
@@ -129,15 +133,21 @@ public class GradeCalculatorController {
     	ArrayList<Double> highestFiveQuizGrades = new ArrayList<Double>();
     	
     	for(TextField textfield: optQuizGradeTextfield) {
-    		Grade optQuizGrade = new Grade(0,10,weightOfEachOptQuiz);
-    		String optErrorMessage = optQuizGrade.setValue(textfield.getText());
-    		if (!optErrorMessage.equals("")) {
-    			noErrors = false;
-    			optQuizGradeErrorLabel.setText(optErrorMessage);	
+    		try{Grade optQuizGrade = new Grade(textfield.getText(),10,weightOfEachOptQuiz);
+    		optAverageQuizGrade += optQuizGrade.getWeightedPercentageGrade();
     		}
-    		optAverageQuizGrade += optQuizGrade.getWeightedPercentageValue();
+    		
+    		catch(InvalidGradeException ige) {
+    			noErrors = false;
+    			Grade optQuizGrade = new Grade(0,10,weightOfEachOptQuiz);
+    			optQuizGradeErrorLabel.setText(ige.toString().replace("application.InvalidGradeException: " ,""));
+    			
+    		}
+    		
+
     		highestFiveQuizGrades.add(Double.parseDouble(textfield.getText()));// in this line it is putting all the numbers in an array individually
     	}
+    
     	
     	Collections.sort(highestFiveQuizGrades);//this sorts from lowest to highest number
     	int numOfQuizzesComplete = highestFiveQuizGrades.size();
@@ -168,6 +178,7 @@ public class GradeCalculatorController {
     	OptApplicationStage.setScene(optMainScene);
     	}
     }
+
 //optional quizzes
     @FXML
     void getOptQuizGrades(ActionEvent enterOptQuizGradeEvent) {
@@ -220,8 +231,10 @@ public class GradeCalculatorController {
     	
     	//assuming the project is worth 50% of course
     	Grade projectGrade = new Grade(0, 100, .5);
-    	projectGradeErrorLabel.setText(projectGrade.setValue(projectGradeTextfield.getText()));//no error message for 101
+    	//projectGradeErrorLabel.setText(projectGrade.setValue(projectGradeTextfield.getText()));//no error message for 101
+    	
     
+			
     	
     	//require and optional quizzes//have to fix this part i think I do not kno what tho
     	
@@ -241,9 +254,9 @@ public class GradeCalculatorController {
     	
     	//check if user entered a percentage grade. If not, display error message and don't
     	//include project grade in course grade
-    	courseGrade = projectGrade.getWeightedPercentageValue() + reQuizGrade.getWeightedPercentageValue() 
-    	+ optQuizGrade.getWeightedPercentageValue()+ codingChallengesPassed.getWeightedPercentageValue()
-    	+ optCodingChallengesPassed.getWeightedPercentageValue();
+    	courseGrade = projectGrade.getWeightedPercentageGrade() + reQuizGrade.getWeightedPercentageGrade() 
+    	+ optQuizGrade.getWeightedPercentageGrade()+ codingChallengesPassed.getWeightedPercentageGrade()
+    	+ optCodingChallengesPassed.getWeightedPercentageGrade();
     	
     	// Display result of calculation to the user in the window
     	//Display result to two digits after the decimal point
