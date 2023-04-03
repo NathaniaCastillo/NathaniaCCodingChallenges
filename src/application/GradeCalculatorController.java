@@ -230,8 +230,14 @@ public class GradeCalculatorController {
     	double courseGrade = 0.0;
     	
     	//assuming the project is worth 50% of course
-    	Grade projectGrade = new Grade(0, 100, .5);
-    	//projectGradeErrorLabel.setText(projectGrade.setValue(projectGradeTextfield.getText()));//no error message for 101
+    	
+    	try{
+    		Grade projectGrade = new Grade(projectGradeTextfield.getText(), 100, .5);}
+    	
+    	catch(InvalidGradeException ige) {
+    		Grade projectGrade = new Grade(0,100,.5);
+    		projectGradeErrorLabel.setText(ige.toString().replace("application.InvalidGradeException: " ,""));
+    	}
     	
     
 			
